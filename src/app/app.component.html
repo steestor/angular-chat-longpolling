@@ -1,0 +1,95 @@
+<div class="background">
+  <div class="title-web">Chat con Long Polling</div>
+
+  @if(initPage){
+  <dx-popup
+    [width]="300"
+    [height]="205"
+    [showTitle]="true"
+    title="Credenciales de usuario"
+    [dragEnabled]="false"
+    [hideOnOutsideClick]="false"
+    [showCloseButton]="false"
+    [visible]="initPage"
+  >
+    <div>
+      <div class="row mb-2">
+        <dx-text-box
+          #userBox
+          [(ngModel)]="user"
+          placeholder="Nombre de Usuario"
+        ></dx-text-box>
+      </div>
+      <div class="row mb-2">
+        <div class="col-12">
+          <dx-switch
+            [value]="switchValue"
+            switchedOnText="Mujer"
+            switchedOffText="Hombre"
+            width="100"
+            (onValueChanged)="switchValue = $event.value"
+          ></dx-switch>
+        </div>
+      </div>
+      <div class="row">
+        <dx-button
+          (click)="initChat()"
+          text="Entrar"
+          type="default"
+        ></dx-button>
+      </div>
+    </div>
+  </dx-popup>
+
+  } @else{
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="dx-card">
+      <div class="row m-4 justify-content-center superior-card">
+        ¡Hola {{ user }}! Recuerda que todos los visitantes de esta página verán
+        mensajes entre ellos.
+      </div>
+
+      <div
+        [style]="{
+          overflowY: 'scroll',
+          height: '70%',
+          marginBotton: '10px'
+        }"
+      >
+        @for(msg of messages; track $index){
+        <div class="row d-flex justify-content-center m-2">
+          <div class="col-auto">
+            <img width="40" height="40" [src]="msg.avatar" />
+          </div>
+          <div class="col my-1">
+            <dx-text-box
+              [value]="msg.message"
+              [label]="msg.user"
+              [readOnly]="true"
+            ></dx-text-box>
+          </div>
+          <div
+            class="col-auto d-flex justify-content-center align-items-center"
+          >
+            {{ msg.date | date : "hh:mm" }}
+          </div>
+        </div>
+        }
+      </div>
+
+      <div class="row">
+        <div class="col-8 ms-3">
+          <dx-text-box
+            #messageBox
+            [(ngModel)]="newMessage"
+            placeholder="Escribe tu mensaje..."
+          ></dx-text-box>
+        </div>
+        <div class="col-3">
+          <dx-button (click)="sendMessage()" text="Enviar"></dx-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

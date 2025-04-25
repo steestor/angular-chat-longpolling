@@ -1,0 +1,39 @@
+.dx-card {
+  width: 400px;
+  height: 600px;
+  box-shadow: 11px 8px 18px 1px #000000;
+  border-radius: 10px;
+}
+
+.background {
+  height: 100vh;
+  background-image: linear-gradient(
+    to right top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  ) !important;
+}
+
+.superior-card {
+  width: 350px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 10px 50px;
+  text-align: center;
+  background-color: #2f3031;
+  color: white;
+  border-radius: 10px;
+}
+
+.title-web {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  font: small-caps bold 60px/1 sans-serif;
+}
